@@ -5,10 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
     "compile": "hardhat compile",
     "deploy": "hardhat run scripts/deploy.ts",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "verify": "hardhat run scripts/verify.ts",
     "node": "hardhat node",
-    "clean": "hardhat clean"
+    "clean": "hardhat clean",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write '**/*.{ts,js,json,md}'"
   },
   "keywords": [
     "blockchain",
@@ -16,17 +22,34 @@
     "subscription",
     "erc-4337",
     "account-abstraction",
-    "web3"
+    "web3",
+    "defi",
+    "payments"
   ],
   "author": "Reclaim Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oiiaimeow/Reclaim.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oiiaimeow/Reclaim/issues"
+  },
+  "homepage": "https://github.com/oiiaimeow/Reclaim#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/contracts": "^5.0.0",
     "@typechain/ethers-v6": "^0.5.0",
     "@typechain/hardhat": "^9.0.0",
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "dotenv": "^16.3.0",
+    "eslint": "^8.56.0",
     "hardhat": "^2.19.0",
+    "hardhat-gas-reporter": "^1.0.9",
+    "prettier": "^3.0.0",
+    "solidity-coverage": "^0.8.5",
     "typescript": "^5.3.0"
   },
   "dependencies": {
@@ -34,4 +57,3 @@
     "ethers": "^6.9.0"
   }
 }
-
