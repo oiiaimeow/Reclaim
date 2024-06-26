@@ -109,6 +109,21 @@ Reclaim/
 
 See [CONTRACTS.md](docs/CONTRACTS.md) for smart contract architecture and [API.md](docs/API.md) for frontend integration guide.
 
+## Community
+
+- [GitHub](https://github.com/oiiaimeow/Reclaim)
+- [Twitter](https://twitter.com/reclaim)
+- [Discord](https://discord.gg/reclaim)
+- [Documentation](https://docs.reclaim.xyz)
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## Security
+
+Security is our top priority. See [SECURITY.md](docs/SECURITY.md) for our security policy and how to report vulnerabilities.
+
 ## License
 
 MIT License
