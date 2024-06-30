@@ -66,6 +66,7 @@ contract PaymentManager is Ownable, ReentrancyGuard {
      * @param paymentToken The ERC20 token used for payment
      * @param amount The payment amount per interval
      * @param interval The payment interval in seconds
+     * @return subscriptionId The ID of the newly created subscription
      */
     function createSubscription(
         address creator,
@@ -77,6 +78,7 @@ contract PaymentManager is Ownable, ReentrancyGuard {
         require(paymentToken != address(0), "Invalid token address");
         require(amount > 0, "Amount must be greater than 0");
         require(interval > 0, "Interval must be greater than 0");
+        require(interval >= 1 days, "Interval must be at least 1 day");
 
         uint256 subscriptionId = subscriptionIdCounter++;
 
