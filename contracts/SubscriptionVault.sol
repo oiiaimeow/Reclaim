@@ -73,6 +73,7 @@ contract SubscriptionVault is Ownable, ReentrancyGuard {
      * @notice Deposits tokens into the vault
      * @param token The ERC20 token address
      * @param amount The amount to deposit
+     * @dev Transfers tokens from sender to vault and updates balance
      */
     function deposit(address token, uint256 amount) external nonReentrant {
         require(token != address(0), "Invalid token address");
