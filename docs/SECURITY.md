@@ -1,115 +1,262 @@
 # Security Policy
 
-## Reporting Security Vulnerabilities
+## Reporting a Vulnerability
 
-We take security seriously. If you discover a security vulnerability, please:
+The Reclaim team takes security seriously. We appreciate your efforts to responsibly disclose your findings.
 
-1. **Do NOT** create a public GitHub issue
-2. Email security@reclaim.xyz with details
-3. Include:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
-   - Suggested fix (if any)
+### How to Report
 
-We will respond within 48 hours and work with you to address the issue.
+**Please do NOT create a public GitHub issue for security vulnerabilities.**
+
+Instead, please report security vulnerabilities by emailing:
+- **Email**: security@reclaim.protocol (placeholder)
+- **Subject**: [SECURITY] Brief description of the issue
+
+### What to Include
+
+When reporting a vulnerability, please include:
+
+1. **Description**: Detailed description of the vulnerability
+2. **Impact**: Potential impact and severity
+3. **Steps to Reproduce**: Clear steps to reproduce the issue
+4. **Proof of Concept**: Code or screenshots demonstrating the vulnerability
+5. **Suggested Fix**: If you have recommendations for fixing
+6. **Your Contact**: How we can reach you for follow-up
+
+### Response Timeline
+
+- **Initial Response**: Within 48 hours
+- **Status Update**: Within 7 days
+- **Fix Timeline**: Depends on severity
+  - Critical: 1-7 days
+  - High: 7-14 days
+  - Medium: 14-30 days
+  - Low: 30-90 days
+
+### Bug Bounty Program
+
+We plan to establish a bug bounty program with rewards based on severity:
+
+| Severity | Reward Range | Examples |
+|----------|--------------|----------|
+| Critical | $5,000 - $50,000 | Fund theft, unauthorized access to funds |
+| High | $1,000 - $5,000 | Denial of service, privilege escalation |
+| Medium | $250 - $1,000 | Information disclosure, minor vulnerabilities |
+| Low | $50 - $250 | Best practice violations, informational |
 
 ## Security Measures
 
-### Smart Contracts
+### Smart Contract Security
 
-- **ReentrancyGuard**: Protection against reentrancy attacks
-- **SafeERC20**: Secure token transfers
-- **Access Control**: Owner-based permissions for sensitive functions
-- **Input Validation**: Comprehensive parameter checks
-- **Events**: All state changes emit events for transparency
+1. **Access Control**
+   - Role-based permissions (RBAC)
+   - Owner-only functions for critical operations
+   - Multi-signature requirements for high-value transactions
 
-### Best Practices
+2. **Reentrancy Protection**
+   - OpenZeppelin's ReentrancyGuard
+   - Checks-Effects-Interactions pattern
+   - State updates before external calls
 
-1. **Audits**: Conduct security audits before mainnet deployment
-2. **Testing**: Comprehensive test coverage (>90%)
-3. **Gas Optimization**: Efficient code to minimize attack surface
-4. **Upgradability**: Consider proxy patterns for future updates
-5. **Multi-sig**: Use multi-signature wallets for admin functions
+3. **Integer Overflow/Underflow**
+   - Solidity 0.8.x built-in overflow checks
+   - SafeMath for additional operations
 
-### Known Limitations
+4. **Input Validation**
+   - Address zero checks
+   - Amount bounds validation
+   - Interval constraints
+   - Token whitelist (where applicable)
 
-- Contracts are currently non-upgradeable
-- Reliance on external ERC20 token implementations
-- Gas price fluctuations may affect transaction execution
+5. **Token Handling**
+   - SafeERC20 for all token operations
+   - Approval checks before transfers
+   - Balance verification
 
-## Deployment Security
+### Frontend Security
 
-### Private Key Management
+1. **Web3 Security**
+   - Transaction simulation before execution
+   - User confirmation for all actions
+   - Display transaction details clearly
+   - Verify contract addresses
 
-- Never commit private keys to git
-- Use hardware wallets for mainnet
-- Store keys in secure key management systems
-- Implement key rotation policies
+2. **Input Sanitization**
+   - Address validation (ethers.js)
+   - Amount format validation
+   - XSS prevention
+   - SQL injection prevention (if applicable)
 
-### Network Security
+3. **Environment Variables**
+   - Never expose private keys
+   - Secure API key storage
+   - Different keys for dev/prod
 
-- Use VPN when deploying
-- Verify RPC endpoint security
-- Monitor for unusual activity
-- Implement rate limiting
+### Operational Security
 
-## User Security
+1. **Deployment**
+   - Multi-sig wallet control
+   - Timelock for upgrades
+   - Gradual rollout strategy
+   - Comprehensive testing on testnet
+
+2. **Monitoring**
+   - 24/7 transaction monitoring
+   - Anomaly detection
+   - Alert system for suspicious activity
+   - Regular security audits
+
+3. **Incident Response**
+   - Emergency pause mechanism
+   - Incident response plan
+   - Communication protocols
+   - Recovery procedures
+
+## Known Limitations
+
+### Current Version
+
+1. **Price Oracle Dependency**
+   - Relies on owner to update prices
+   - 24-hour price validity window
+   - No automatic failover
+
+2. **Payment Processing**
+   - Requires manual or automated trigger
+   - No built-in scheduler
+   - Depends on external service or user action
+
+3. **Gas Costs**
+   - High during network congestion
+   - No built-in gas optimization for batching
+
+4. **Refund Mechanism**
+   - Requires creator approval
+   - No automatic refund processing
+   - Time window restrictions
+
+### Future Enhancements
+
+Planned security improvements:
+
+1. Implement Chainlink price feeds
+2. ERC-4337 account abstraction integration
+3. Automated payment processing with Gelato
+4. Enhanced emergency pause mechanisms
+5. Formal verification of critical functions
+6. Implement upgrade proxy pattern
+7. Add insurance fund
+
+## Audits
+
+### Completed Audits
+
+_No audits completed yet_
+
+### Planned Audits
+
+- [ ] Internal security review
+- [ ] External audit by reputable firm
+- [ ] Formal verification of critical contracts
+- [ ] Economic audit of tokenomics
+
+## Security Best Practices for Users
 
 ### For Subscribers
 
-- Review subscription details before confirming
-- Monitor your subscriptions regularly
-- Cancel unused subscriptions
-- Keep sufficient balance for payments
-- Understand refund policies
+1. **Wallet Security**
+   - Use hardware wallet for large amounts
+   - Keep seed phrase secure and offline
+   - Enable 2FA where possible
+   - Regularly check connected dapps
+
+2. **Transaction Verification**
+   - Always verify recipient address
+   - Check transaction details before signing
+   - Ensure correct network
+   - Monitor your subscriptions regularly
+
+3. **Token Approvals**
+   - Only approve necessary amounts
+   - Revoke unused approvals
+   - Use tools like Revoke.cash
+   - Set spending limits
 
 ### For Creators
 
-- Set reasonable refund policies
-- Monitor subscription activity
-- Withdraw funds regularly
-- Implement additional verification for high-value subscriptions
+1. **Account Security**
+   - Use dedicated wallet for subscriptions
+   - Implement multi-sig for withdrawals
+   - Regular security audits of your setup
+   - Keep private keys secure
 
-## Smart Contract Security Checklist
+2. **Financial Management**
+   - Withdraw regularly to cold storage
+   - Set up automated alerts
+   - Keep backup of all transactions
+   - Maintain adequate gas reserves
 
-- [ ] All functions have appropriate access control
-- [ ] Input validation on all user inputs
-- [ ] ReentrancyGuard on all state-changing functions
-- [ ] SafeERC20 for all token transfers
-- [ ] Events emitted for all important actions
-- [ ] Gas limits considered
-- [ ] Integer overflow/underflow handled (Solidity 0.8+)
-- [ ] Front-running protection where needed
-- [ ] Emergency pause mechanism considered
-- [ ] Comprehensive test coverage
-- [ ] External audit completed
-- [ ] Bug bounty program established
+3. **Refund Policy**
+   - Set clear refund policies
+   - Respond to refund requests promptly
+   - Keep sufficient balance for refunds
+   - Document all refund decisions
 
-## Incident Response
+## Vulnerability Disclosure Policy
 
-In case of a security incident:
+### Scope
 
-1. Pause affected contracts (if possible)
-2. Assess the impact
-3. Notify affected users
-4. Implement fixes
-5. Deploy patched version
-6. Post-mortem analysis
-7. Update security measures
+In-scope vulnerabilities:
+- Smart contract vulnerabilities
+- Frontend security issues
+- Authentication/authorization flaws
+- Cryptographic vulnerabilities
+- Business logic errors
 
-## Regular Security Reviews
+Out-of-scope:
+- Third-party dependencies (report to respective projects)
+- Social engineering attacks
+- Physical attacks
+- Denial of service attacks
+- Issues in non-production environments
 
-- Quarterly code reviews
-- Annual security audits
-- Continuous monitoring
-- Community bug bounty program
+### Rules of Engagement
+
+1. **Do**:
+   - Test on testnet when possible
+   - Provide detailed reports
+   - Give us reasonable time to respond
+   - Act in good faith
+
+2. **Don't**:
+   - Access or modify user data
+   - Disrupt service for others
+   - Publicly disclose before fix
+   - Demand payment for disclosure
+
+### Safe Harbor
+
+We will not pursue legal action against security researchers who:
+- Follow this disclosure policy
+- Act in good faith
+- Don't violate any applicable laws
+- Don't access/modify user data beyond PoC
 
 ## Contact
 
-Security Team: security@reclaim.xyz
+For security-related questions:
+- **Security Email**: security@reclaim.protocol
+- **General Email**: contact@reclaim.protocol
+- **Discord**: [Reclaim Security Channel]
+- **Twitter**: [@ReclaimProtocol]
 
-## Acknowledgments
+## Updates
 
-We appreciate the security research community's efforts in keeping our platform secure.
+This security policy is reviewed and updated quarterly. Last updated: October 2024.
 
+## References
+
+- [OpenZeppelin Security](https://docs.openzeppelin.com/contracts/security)
+- [Ethereum Smart Contract Best Practices](https://consensys.github.io/smart-contract-best-practices/)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [Trail of Bits Security Guide](https://github.com/crytic/building-secure-contracts)
