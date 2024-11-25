@@ -1,39 +1,98 @@
 import { ethers } from 'ethers';
 
-export function validateAddress(address: string): boolean {
+/**
+ * Validates an Ethereum address
+ */
+export const isValidAddress = (address: string): boolean => {
   try {
-    ethers.getAddress(address);
-    return true;
+    return ethers.isAddress(address);
   } catch {
     return false;
   }
-}
+};
 
-export function validateAmount(amount: string, min: number = 0, max: number = Infinity): boolean {
-  const num = parseFloat(amount);
-  return !isNaN(num) && num > min && num <= max;
-}
+/**
+ * Validates an amount string
+ */
+export const isValidAmount = (amount: string): boolean => {
+  if (!amount || amount.trim() === '') return false;
+  
+  try {
+    const parsed = parseFloat(amount);
+    return parsed > 0 && !isNaN(parsed) && isFinite(parsed);
+  } catch {
+    return false;
+  }
+};
 
-export function validateInterval(interval: number): boolean {
-  const oneDay = 86400;
-  return interval >= oneDay;
-}
+/**
+ * Validates subscription interval
+ */
+export const isValidInterval = (interval: string): boolean => {
+  const validIntervals = ['daily', 'weekly', 'monthly', 'yearly'];
+  return validIntervals.includes(interval.toLowerCase());
+};
 
-export function validateEmail(email: string): boolean {
+/**
+ * Sanitizes user input
+ */
+export const sanitizeInput = (input: string): string => {
+  return input.trim().replace(/[<>]/g, '');
+};
+
+/**
+ * Validates transaction hash
+ */
+export const isValidTxHash = (hash: string): boolean => {
+  return /^0x([A-Fa-f0-9]{64})$/.test(hash);
+};
+
+/**
+ * Validates email format
+ */
+export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
-}
+};
 
-export function validateUrl(url: string): boolean {
+/**
+ * Validates URL format
+ */
+export const isValidUrl = (url: string): boolean => {
   try {
     new URL(url);
     return true;
   } catch {
     return false;
   }
-}
+};
 
-export function sanitizeInput(input: string): string {
-  return input.trim().replace(/[<>]/g, '');
-}
+/**
+ * Checks if value is within range
+ */
+export const isInRange = (
+  value: number,
+  min: number,
+  max: number
+): boolean => {
+  return value >= min && value <= max;
+};
 
+/**
+ * Validates hex string
+ */
+export const isValidHex = (hex: string): boolean => {
+  return /^0x[0-9A-Fa-f]*$/.test(hex);
+};
+
+export default {
+  isValidAddress,
+  isValidAmount,
+  isValidInterval,
+  sanitizeInput,
+  isValidTxHash,
+  isValidEmail,
+  isValidUrl,
+  isInRange,
+  isValidHex,
+};
