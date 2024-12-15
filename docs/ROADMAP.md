@@ -1,49 +1,31 @@
 # Reclaim Roadmap
 
-## Phase 1: Foundation (Q1 2024) ✅
-
-- [x] Core smart contracts
-- [x] Basic frontend
-- [x] Test suite
+## Q1 2024: Foundation
+- [x] Core smart contracts development
+- [x] Basic frontend implementation
+- [x] Local testing environment
 - [x] Documentation
 
-## Phase 2: Enhancement (Q2 2024) 🚧
+## Q2 2024: Testing & Security
+- [x] Testnet deployment
+- [ ] Security audit
+- [ ] Bug bounty program
+- [ ] Community testing
 
-- [x] Advanced subscription features
-- [x] Creator dashboard
-- [ ] Mobile-responsive design
-- [ ] Performance optimization
+## Q3 2024: Launch Preparation
+- [ ] Mainnet deployment
+- [ ] Frontend polish
+- [ ] Marketing materials
+- [ ] Community building
 
-## Phase 3: Expansion (Q3 2024) 📋
+## Q4 2024: Growth
+- [ ] Layer 2 integration
+- [ ] Mobile app development
+- [ ] Partnership announcements
+- [ ] User acquisition campaigns
 
-- [ ] Multi-chain support (Polygon, Arbitrum, Optimism)
-- [ ] NFT-gated subscriptions
-- [ ] Subscription tiers
-- [ ] Analytics dashboard
-
-## Phase 4: Integration (Q4 2024) 📋
-
-- [ ] Mirror.xyz integration
-- [ ] Lens Protocol integration
-- [ ] Farcaster integration
-- [ ] Email notifications
-
-## Phase 5: Advanced Features (2025) 📋
-
-- [ ] Subscription bundles
-- [ ] Gifting subscriptions
-- [ ] Fiat on-ramp
-- [ ] Mobile app
-
-## Future Considerations
-
-- Governance token
-- DAO structure
-- Revenue sharing
-- Cross-chain bridges
-- L2 scaling solutions
-
-## Community Requests
-
-Track feature requests on [GitHub Issues](https://github.com/oiiaimeow/Reclaim/issues)
-
+## 2025: Expansion
+- [ ] Multi-chain support
+- [ ] Advanced features (tiered plans, NFT gating)
+- [ ] DAO governance
+- [ ] International expansion
